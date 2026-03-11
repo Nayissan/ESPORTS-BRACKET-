@@ -221,10 +221,10 @@ table tr:nth-child(even) {
 }
 
 button {
-  margin-top: 80px;
+  margin-top: 60px;
 
   .button p {
-  margin-bottom: 25px;
+  margin-bottom: 60px;
 
 }
 

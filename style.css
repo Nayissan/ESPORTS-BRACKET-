@@ -7,7 +7,7 @@ body {
   /* CENTRAGE VERTICAL ET HORIZONTAL */
   display: flex;
   justify-content: center; /* centré horizontalement */
-  align-items: center;     /* centré verticalement */
+  align-items: bottom ;     /* centré verticalement */
   height: 100vh;           /* prend toute la hauteur de la page */
 }
 

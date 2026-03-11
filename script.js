@@ -23,7 +23,13 @@ function addTeam() {
   }
 
   const teamGame = document.getElementById("teamGame").value;
-  const playerList = players.split(",").map(p => p.trim());
+  const playerList =
+    players1
+    players2
+    players3
+    players4
+    players5
+    .split( ).map(p => p.trim());
 
   // Vérifier nombre de joueurs selon le jeu
   const maxPlayers = teamGame === "Valorant" ? 5 : 3;
@@ -33,6 +39,7 @@ function addTeam() {
   }
 
   const newTeam = {
+    logo.png
     id: Date.now(),
     name,
     game: teamGame,

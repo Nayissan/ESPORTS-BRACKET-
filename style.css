@@ -17,6 +17,7 @@ body {
   color: white;
   text-align: center;  /* centre horizontalement */
   margin-top: 40px;    /* espace en haut de la page */
+  margin-bottom: 50px;
   letter-spacing: 3px;
   /* MENU HAMBURGER EN HAUT A DROITE */
 .menu-btn {
@@ -60,11 +61,9 @@ body {
 .tournament-info {
   text-align: left; /* texte légèrement à gauche */
   flex: 1;          /* prend tout l’espace disponible */
-
-    .tournament-info p {
   margin-bottom: 50px;
 
-      p {
+    
   margin-bottom: 50px;
 }
 }
@@ -224,13 +223,6 @@ table tr:nth-child(even) {
   transform: scale(1.1);
 }
 
-button {
-  margin-top: 20px;
-
-  h2 {
-  margin-bottom: 100px;
-}
-
 
 }
 
@@ -274,6 +266,7 @@ document.getElementById("teamsList").innerHTML += teamHTML;
   font-weight: 600;
   z-index: 1000;
   transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 50px;
 }
 
 .add-team-btn:hover {

@@ -124,6 +124,7 @@ function openMenu() {
   `;
 
   document.getElementById("teamsList").innerHTML += teamHTML;
+    
 
 }
   </body>.

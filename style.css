@@ -62,7 +62,7 @@ body {
   flex: 1;          /* prend tout l’espace disponible */
 
     .tournament-info p {
-  margin-bottom: 40px;
+  margin-bottom: 25px;
 }
 }
 

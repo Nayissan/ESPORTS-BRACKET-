@@ -60,6 +60,9 @@ body {
 .tournament-info {
   text-align: left; /* texte légèrement à gauche */
   flex: 1;          /* prend tout l’espace disponible */
+
+    .tournament-info p {
+  margin-bottom: 40px;
 }
 }
 
@@ -220,9 +223,6 @@ table tr:nth-child(even) {
 button {
   margin-top: 80px;
 
-  .tournament-info p {
-  margin-bottom: 100px;
-}
 }
 
 document.querySelector(".add-team-btn").onclick = function(){

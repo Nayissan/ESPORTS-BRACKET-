@@ -12,11 +12,19 @@ body {
 }
 
 .main-title {
-  color: white;        /* texte blanc */
-  font-size: 60px;     /* taille du texte */
-  letter-spacing: 3px; /* espacement des lettres */
-  text-align: center bottom ; /* emplacement du texte */
+  font-size: 60px;
+  color: white;
+  text-align: center; /* centre horizontalement */
+  margin-top: 40px;
+  letter-spacing: 3px;
 }
+
+.tournament-info {
+  text-align: left; /* aligne le texte légèrement à gauche */
+  flex: 1;          /* prend tout l’espace restant pour la carte */
+
+}
+
 /* GLOBAL */
 body {
   margin: 0;

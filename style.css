@@ -14,10 +14,11 @@ body {
 
 .main-title {
   font-size: 60px;
+  right: 80px;
   color: white;
   text-align: center;  /* centre horizontalement */
-  margin-top: 40px;    /* espace en haut de la page */
-  margin-bottom: 50px;
+  margin-top: 60px;    /* espace en haut de la page */
+  margin-bottom: 100px;
   letter-spacing: 3px;
   /* MENU HAMBURGER EN HAUT A DROITE */
 .menu-btn {
@@ -55,18 +56,14 @@ body {
 #sideMenu .menu-item:hover {
   background-color: rgba(255,255,255,0.1);
 }
-}
-}
 
+
+  
 .tournament-info {
   text-align: left; /* texte légèrement à gauche */
   flex: 1;          /* prend tout l’espace disponible */
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 
-    
-  margin-bottom: 50px;
-}
-}
 }
 
 /* GLOBAL */
@@ -135,7 +132,7 @@ section {
 /* TITLES */
 h2 {
   color: #4a8cff; /* bleu clair pour accentuer */
-  margin-bottom: 12px;
+  margin-bottom: 70px;
 }
 
 /* FORM ELEMENTS */
@@ -254,7 +251,7 @@ document.getElementById("teamsList").innerHTML += teamHTML;
   /* BOUTON + TEAM EN HAUT A DROITE */
 .add-team-btn {
   position: fixed;       /* reste visible même en scrollant */
-  top: 20px;             /* espace par rapport au haut */
+  top: 70px;             /* espace par rapport au haut */
   right: 20px;           /* espace par rapport à la droite */
   font-size: 18px;
   padding: 10px 16px;
@@ -272,6 +269,4 @@ document.getElementById("teamsList").innerHTML += teamHTML;
 .add-team-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-}
-
 }

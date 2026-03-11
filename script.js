@@ -92,3 +92,10 @@ body {
   font-size: 50px;
   cursor: pointer;
 }
+function openMenu(){
+  let menu = document.getElementById("sideMenu");
+  if(menu.style.right === "0px"){
+    menu.style.right = "-250px";
+  } else {
+    menu.style.right = "0px";
+  </body>.

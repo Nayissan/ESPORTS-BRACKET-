@@ -218,7 +218,11 @@ table tr:nth-child(even) {
 }
 
 button {
-  margin-top: 30px;
+  margin-top: 80px;
+
+  .tournament-info p {
+  margin-bottom: 20px;
+}
 }
 
 document.querySelector(".add-team-btn").onclick = function(){

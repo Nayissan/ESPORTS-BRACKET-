@@ -2,8 +2,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: #0b1220; /* bleu marine foncé */
-  font-family: Arial, sans-serif;
-  
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+}
   /* CENTRAGE VERTICAL ET HORIZONTAL */
   display: flex;
   justify-content: center; /* centré horizontalement */
@@ -12,18 +13,18 @@ body {
 }
 
 .main-title {
-  position : bottom
   font-size: 60px;
   color: white;
-  text-align: center; /* centre horizontalement */
-  margin-top: 100px;
+  text-align: center;  /* centre horizontalement */
+  margin-top: 40px;    /* espace en haut de la page */
   letter-spacing: 3px;
+}
 }
 
 .tournament-info {
-  text-align: left; /* aligne le texte légèrement à gauche */
-  flex: 1;          /* prend tout l’espace restant pour la carte */
-
+  text-align: left; /* texte légèrement à gauche */
+  flex: 1;          /* prend tout l’espace disponible */
+}
 }
 
 /* GLOBAL */

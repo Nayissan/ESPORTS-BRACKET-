@@ -218,7 +218,7 @@ table tr:nth-child(even) {
 }
 
 button {
-  margin-top: 15px;
+  margin-top: 30px;
 }
 
 document.querySelector(".add-team-btn").onclick = function(){

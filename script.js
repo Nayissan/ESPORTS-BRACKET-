@@ -99,5 +99,31 @@ function openMenu() {
   } else {
     menu.style.right = "0px";    // montre le menu
   }
+  document.querySelector(".add-team-btn").onclick = function(){
+
+  let name = prompt("Team name");
+  if(!name) return;
+
+  let tag = prompt("Team tag (ex: ABC)");
+  if(!tag) return;
+
+  let game = prompt("Game (Valorant or RocketLeague)");
+  if(!game) return;
+
+  let players = game === "Valorant" ? 5 : 3;
+
+  let teamHTML = `
+  <div class="team-card">
+    <img src="defaultlogo.png" class="team-logo">
+
+    <div class="team-info">
+      <h3>${name}</h3>
+      <p>${tag} • ${players} players</p>
+    </div>
+  </div>
+  `;
+
+  document.getElementById("teamsList").innerHTML += teamHTML;
+
 }
   </body>.

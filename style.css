@@ -151,3 +151,29 @@ table tr:nth-child(even) {
 #siteLogo:hover {
   transform: scale(1.1);
 }
+document.querySelector(".add-team-btn").onclick = function(){
+
+let name = prompt("Team name");
+let tag = prompt("Team tag (ex: ABC)");
+let game = prompt("Game (Valorant or RocketLeague)");
+
+let players = game === "Valorant" ? 5 : 3;
+
+let teamHTML = `
+<div class="team-card">
+
+<img src="defaultlogo.png" class="team-logo">
+
+<div class="team-info">
+<h3>${name}</h3>
+<p>${tag} • ${players} players</p>
+</div>
+
+<div class="team-menu">⋮</div>
+
+</div>
+`;
+
+document.getElementById("teamsList").innerHTML += teamHTML;
+
+}

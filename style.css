@@ -12,7 +12,7 @@ body {
 }
 
 .main-title {
-  position : bottomcenter 
+  position : bottom
   font-size: 60px;
   color: white;
   text-align: center; /* centre horizontalement */

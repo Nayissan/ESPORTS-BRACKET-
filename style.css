@@ -18,6 +18,42 @@ body {
   text-align: center;  /* centre horizontalement */
   margin-top: 40px;    /* espace en haut de la page */
   letter-spacing: 3px;
+  /* MENU HAMBURGER EN HAUT A DROITE */
+.menu-btn {
+  position: fixed;   /* reste toujours visible */
+  top: 20px;         /* espace par rapport au haut */
+  right: 20px;       /* espace par rapport à la droite */
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;     /* au-dessus de tout le reste */
+}
+
+/* Panneau du menu latéral */
+#sideMenu {
+  position: fixed;
+  top: 0;
+  right: -250px;      /* caché par défaut */
+  width: 250px;
+  height: 100%;
+  background-color: #0b1220;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.7);
+  transition: right 0.3s;
+  padding: 20px;
+  z-index: 999;
+}
+
+/* Items du menu */
+#sideMenu .menu-item {
+  padding: 15px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#sideMenu .menu-item:hover {
+  background-color: rgba(255,255,255,0.1);
+}
 }
 }
 

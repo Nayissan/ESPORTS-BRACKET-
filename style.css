@@ -241,4 +241,26 @@ let teamHTML = `
 
 document.getElementById("teamsList").innerHTML += teamHTML;
 
+  /* BOUTON + TEAM EN HAUT A DROITE */
+.add-team-btn {
+  position: fixed;       /* reste visible même en scrollant */
+  top: 20px;             /* espace par rapport au haut */
+  right: 20px;           /* espace par rapport à la droite */
+  font-size: 18px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #4a5ffd, #9b6fff);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  z-index: 1000;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.add-team-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
 }

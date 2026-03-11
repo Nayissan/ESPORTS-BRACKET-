@@ -206,3 +206,22 @@ font-size:35px;
 cursor:pointer;
 box-shadow:0 10px 25px rgba(0,0,0,0.5);
 }
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b1220; /* bleu marine foncé */
+  font-family: Arial, sans-serif;
+  
+  /* CENTRAGE VERTICAL ET HORIZONTAL */
+  display: flex;
+  justify-content: center; /* centré horizontalement */
+  align-items: center;     /* centré verticalement */
+  height: 100vh;           /* prend toute la hauteur de la page */
+}
+
+.main-title {
+  color: white;        /* texte blanc */
+  font-size: 60px;     /* taille du texte */
+  letter-spacing: 3px; /* espacement des lettres */
+  text-align: center;
+}

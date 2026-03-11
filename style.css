@@ -216,6 +216,11 @@ table tr:nth-child(even) {
 #siteLogo:hover {
   transform: scale(1.1);
 }
+
+button {
+  margin-top: 15px;
+}
+
 document.querySelector(".add-team-btn").onclick = function(){
 
 let name = prompt("Team name");

@@ -1,10 +1,64 @@
-{
-  "name": "tournament-manager",
-  "private": true,
-  "scripts": {
-    "build": "echo build",
-    "start": "echo start"
-  }
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Esport Tournament Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Navigation simple -->
+  <nav class="nav">
+    <button onclick="showPage('home')">Accueil</button>
+    <button onclick="showPage('teams')">Equipes</button>
+    <button onclick="showPage('tournaments')">Tournois</button>
+  </nav>
+
+  <!-- PAGE D'ACCUEIL -->
+  <div id="home">
+    <h1>Bienvenue sur Esport Tournament Manager</h1>
+    <p>Créez des équipes, des tournois et simulez des matchs !</p>
+  </div>
+
+  <!-- PAGE EQUIPES -->
+  <div id="teams" style="display:none">
+    <h2>Créer une équipe</h2>
+    <label>Nom de l'équipe :</label>
+    <input type="text" id="teamName" placeholder="Ex : Les Rockets">
+    <label>Joueurs (séparés par des virgules) :</label>
+    <input type="text" id="players" placeholder="Ex : Alice, Bob, Charlie">
+    <label>Jeu :</label>
+    <select id="teamGame">
+      <option value="Rocket League">Rocket League</option>
+      <option value="Valorant">Valorant</option>
+    </select>
+    <button onclick="addTeam()">Ajouter l'équipe</button>
+
+    <h3>Liste des équipes</h3>
+    <div id="teamList"></div>
+  </div>
+
+  <!-- PAGE TOURNOIS -->
+  <div id="tournaments" style="display:none">
+    <h2>Créer un tournoi</h2>
+    <label>Nom du tournoi :</label>
+    <input type="text" id="tournamentName" placeholder="Ex : Championnat D1">
+    <label>Jeu :</label>
+    <select id="game">
+      <option value="Rocket League">Rocket League</option>
+      <option value="Valorant">Valorant</option>
+    </select>
+    <label>Mode :</label>
+    <select id="mode">
+      <option value="Ligue/Championnat">Ligue/Championnat</option>
+      <option value="Swiss Stage + Playoffs">Swiss Stage + Playoffs</option>
+    </select>
+    <button onclick="createTournament()">Créer le tournoi</button>
+
+    <h3>Liste des tournois</h3>
+    <div id="tournamentList"></div>
+  </div>
+</body>
+</html>
 <script src="script.js" defer></script>
 <link rel="stylesheet" href="style.css">

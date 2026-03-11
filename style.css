@@ -1,272 +1,103 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #0b1220; /* bleu marine foncé */
-  font-family: 'Inter', sans-serif;
-  color: #ffffff;
-}
-  /* CENTRAGE VERTICAL ET HORIZONTAL */
-  display: flex;
-  justify-content: center; /* centré horizontalement */
-  align-items: center;     /* centré verticalement */
-  height: 100vh;           /* prend toute la hauteur de la page */
+/* POLICE */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap');
+
+/* BODY */
+body{
+  margin:0;
+  padding:0;
+  background:#071124;
+  font-family:'Inter', sans-serif;
+  color:white;
 }
 
-.main-title {
-  font-size: 60px;
-  right: 80px;
-  color: white;
-  text-align: center;  /* centre horizontalement */
-  margin-top: 60px;    /* espace en haut de la page */
-  margin-bottom: 100px;
-  letter-spacing: 3px;
-  /* MENU HAMBURGER EN HAUT A DROITE */
-.menu-btn {
-  position: fixed;   /* reste toujours visible */
-  top: 20px;         /* espace par rapport au haut */
-  right: 20px;       /* espace par rapport à la droite */
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
-  z-index: 1000;     /* au-dessus de tout le reste */
+/* TITRE PRINCIPAL */
+.main-title{
+  font-family:'Orbitron', sans-serif;
+  font-size:60px;
+  text-align:center;
+  margin-top:60px;
+  margin-bottom:50px; /* 50px entre titre et texte */
+  letter-spacing:3px;
 }
 
-/* Panneau du menu latéral */
-#sideMenu {
-  position: fixed;
-  top: 0;
-  right: -250px;      /* caché par défaut */
-  width: 250px;
-  height: 100%;
-  background-color: #0b1220;
-  box-shadow: -2px 0 8px rgba(0,0,0,0.7);
-  transition: right 0.3s;
-  padding: 20px;
-  z-index: 999;
+/* CONTENU */
+.container{
+  width:900px;
+  margin:auto;
 }
 
-/* Items du menu */
-#sideMenu .menu-item {
-  padding: 15px 10px;
-  font-size: 18px;
-  cursor: pointer;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+/* BLOCS TOURNOIS */
+.tournament{
+  background:rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:12px;
+  margin-bottom:60px; /* 60px entre les 2 tournois */
+  box-shadow:0 6px 20px rgba(0,0,0,0.5);
+  backdrop-filter:blur(6px);
 }
 
-#sideMenu .menu-item:hover {
-  background-color: rgba(255,255,255,0.1);
+/* TITRES TOURNOIS */
+.tournament h2{
+  color:#4a8cff;
+  margin-bottom:10px;
 }
 
-
-  
-.tournament-info {
-  text-align: left; /* texte légèrement à gauche */
-  flex: 1;          /* prend tout l’espace disponible */
-  margin-bottom: 70px;
-
-}
-
-/* GLOBAL */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #071124; /* bleu marine foncé */
-  color: #ffffff;
-}
-
-/* HEADER / NAVBAR */
-header {
-  background: #0b1a33; /* un bleu un peu plus clair que le fond */
-  padding: 15px 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-}
-
-header h1 {
-  font-size: 24px;
-}
-
-/* NAV BUTTONS */
-.nav button {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 16px;
-  margin-left: 18px;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 6px;
-  transition: background 0.2s;
-}
-
-.nav button:hover {
-  background: rgba(255,255,255,0.15);
-}
-
-/* SECTION CONTAINERS */
-section {
-  margin: 30px 24px;
-}
-
-/* CARD STYLE */
-.card {
-  background-color: rgba(255,255,255,0.05); /* semi-transparent */
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 18px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  backdrop-filter: blur(6px);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.7);
-}
-
-/* TITLES */
-h2 {
-  color: #4a8cff; /* bleu clair pour accentuer */
-  margin-bottom: 70px;
-}
-
-/* FORM ELEMENTS */
-input, select {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #2a3f66;
-  border-radius: 6px;
-  font-size: 15px;
-  background-color: #0e1b34;
-  color: white;
+/* TEXTE */
+.tournament p{
+  line-height:1.6;
 }
 
 /* BOUTONS */
-button {
-  background: linear-gradient(135deg, #4a5ffd, #9b6fff);
-  color: white;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+button{
+  margin-top:20px; /* 20px entre texte et bouton */
+  background:linear-gradient(135deg,#4a5ffd,#9b6fff);
+  color:white;
+  padding:12px 24px;
+  border-radius:10px;
+  font-size:16px;
+  font-weight:600;
+  border:none;
+  cursor:pointer;
+  transition:0.2s;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.5);
 }
 
-/* TEAMS LIST */
-.team {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid #2a3f66;
-  padding: 12px;
-  border-radius: 8px;
-  margin-top: 8px;
+/* BOUTON + TEAM */
+.add-team-btn{
+  display:block;
+  margin:90px auto 0 auto; /* 90px sous le texte */
+  font-size:18px;
+  padding:14px 26px;
 }
 
-/* TABLE STYLE */
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin-top: 12px;
+/* CARTE EQUIPE */
+.team-card{
+  display:flex;
+  align-items:center;
+  background:rgba(255,255,255,0.06);
+  padding:12px;
+  border-radius:10px;
+  margin-top:10px;
 }
 
-table th, table td {
-  padding: 8px 10px;
-  text-align: left;
+/* LOGO EQUIPE */
+.team-logo{
+  width:50px;
+  height:50px;
+  margin-right:12px;
+  border-radius:8px;
 }
 
-table th {
-  background-color: rgba(58,88,255,0.8);
-  color: white;
-  font-weight: 600;
+/* INFOS EQUIPE */
+.team-info h3{
+  margin:0;
 }
 
-table tr:nth-child(even) {
-  background-color: rgba(255,255,255,0.05);
-}
-
-/* PROMO / RELEGATION */
-.promoted {
-  color: #00ff7f;
-  font-weight: bold;
-}
-
-.relegated {
-  color: #ff4c4c;
-  font-weight: bold;
-}
-
-/* LOGO SITE */
-#siteLogo {
-  height: 50px;
-  width: 50px;
-  border-radius: 10px;
-  transition: transform 0.3s;
-}
-
-#siteLogo:hover {
-  transform: scale(1.1);
-}
-
-
-}
-
-document.querySelector(".add-team-btn").onclick = function(){
-
-let name = prompt("Team name");
-let tag = prompt("Team tag (ex: ABC)");
-let game = prompt("Game (Valorant or RocketLeague)");
-
-let players = game === "Valorant" ? 5 : 3;
-
-let teamHTML = `
-<div class="team-card">
-
-<img src="defaultlogo.png" class="team-logo">
-
-<div class="team-info">
-<h3>${name}</h3>
-<p>${tag} • ${players} players</p>
-</div>
-
-<div class="team-menu">⋮</div>
-
-</div>
-`;
-
-document.getElementById("teamsList").innerHTML += teamHTML;
-
-  /* BOUTON + TEAM EN HAUT A DROITE */
-.add-team-btn {
-  position: fixed;       /* reste visible même en scrollant */
-  top: 70px;             /* espace par rapport au haut */
-  right: 20px;           /* espace par rapport à la droite */
-  font-size: 18px;
-  padding: 10px 16px;
-  background: linear-gradient(135deg, #4a5ffd, #9b6fff);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  z-index: 1000;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin-bottom: 50px;
-}
-
-.add-team-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+.team-info p{
+  margin:0;
+  opacity:0.7;
 }

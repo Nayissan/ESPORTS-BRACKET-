@@ -26,11 +26,10 @@ function startLeagueTournament() {
 // ---------------------------
 // Gestion de la création d'équipe
 // ---------------------------
-const teamsList = document.getElementById("teamsList");
 const createTeamPanel = document.getElementById("createTeamPanel");
 const addPlayerBtn = document.getElementById("addPlayerBtn");
 const playersUl = document.getElementById("playersUl");
-
+const teamsGallery = document.getElementById("teamsGallery"); // galerie de cartes
 let currentPlayers = [];
 
 // Ouvrir / fermer le panel de création d'équipe
@@ -68,7 +67,7 @@ addPlayerBtn.onclick = function () {
   playerNameInput.value = "";
 };
 
-// Créer l'équipe
+// Créer l'équipe (avec carte type Pokémon)
 function createTeam() {
   const teamName = document.getElementById("teamName").value.trim();
   const teamTag = document.getElementById("teamTag").value.trim();
@@ -84,22 +83,48 @@ function createTeam() {
     logoSrc = URL.createObjectURL(teamLogoInput.files[0]);
   }
 
-  const teamHTML = `
-    <div class="team-card" style="background:#071124; border-radius:12px; padding:15px; margin-bottom:15px;">
-      <img src="${logoSrc}" class="team-logo" style="width:60px; height:60px; border-radius:10px;">
-      <div class="team-info" style="display:inline-block; vertical-align:top; margin-left:15px;">
-        <h3 style="margin:0; font-family:'Oswald', sans-serif;">${teamName}</h3>
-        <p style="margin:3px 0;">${teamTag} • ${teamGame} • 📍${teamLocation}</p>
-        <ul class="teamPlayersList" style="padding-left:0; margin:0;"></ul>
-      </div>
-    </div>
-  `;
+  // Création de la carte
+  const card = document.createElement("div");
+  card.className = "team-card-pokemon";
+  card.style.background = `linear-gradient(135deg, #1a1a1a, #0b1220)`;
+  card.style.borderRadius = "15px";
+  card.style.padding = "15px";
+  card.style.marginBottom = "20px";
+  card.style.width = "220px";
+  card.style.color = "white";
+  card.style.fontFamily = "'Oswald', sans-serif";
+  card.style.textAlign = "center";
+  card.style.display = "inline-block";
+  card.style.verticalAlign = "top";
+  card.style.boxShadow = "0 8px 15px rgba(0,0,0,0.6)";
 
-  teamsList.innerHTML += teamHTML;
+  // Logo
+  const logo = document.createElement("img");
+  logo.src = logoSrc;
+  logo.style.width = "100px";
+  logo.style.height = "100px";
+  logo.style.borderRadius = "10px";
+  logo.style.marginBottom = "10px";
+  card.appendChild(logo);
 
-  // Ajouter les joueurs
-  const teamPlayersUl = teamsList.querySelectorAll(".teamPlayersList");
-  const lastUl = teamPlayersUl[teamPlayersUl.length - 1];
+  // Nom équipe
+  const nameEl = document.createElement("h3");
+  nameEl.textContent = teamName;
+  nameEl.style.margin = "5px 0";
+  card.appendChild(nameEl);
+
+  // Lieu + jeu
+  const infoEl = document.createElement("p");
+  infoEl.textContent = `${teamGame} • 📍${teamLocation}`;
+  infoEl.style.margin = "5px 0";
+  infoEl.style.fontSize = "14px";
+  card.appendChild(infoEl);
+
+  // Joueurs
+  const playersListEl = document.createElement("ul");
+  playersListEl.style.padding = "0";
+  playersListEl.style.margin = "5px 0 0 0";
+  playersListEl.style.listStyle = "none";
   currentPlayers.forEach((p) => {
     const li = document.createElement("li");
     li.textContent = p;
@@ -109,8 +134,12 @@ function createTeam() {
     li.style.marginBottom = "3px";
     li.style.listStyle = "none";
     li.style.fontFamily = "'Oswald', sans-serif";
-    lastUl.appendChild(li);
+    playersListEl.appendChild(li);
   });
+  card.appendChild(playersListEl);
+
+  // Ajouter la carte à la galerie
+  teamsGallery.appendChild(card);
 
   // Reset
   currentPlayers = [];

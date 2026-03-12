@@ -1,46 +1,112 @@
-<body>
-  
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <title>Esport Manager</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-                                                                  <!-- HERO SECTION (titre centré) -->
-<section class="hero">                                                 
-  <h1 class="main-title">ESPORT MANAGER</h1>
-</section>
 
-<!-- TOURNAMENTS -->
-<section class="tournaments">
-  <!-- Championnat -->
-  <div class="tournament">
-    <div class="tournament-info">
-      <h2>League / Championship 📅 </h2>
-      <p>Create a full league with standings,
-        promotions and relegations.</p>
-      <button class="start-btn">Start Tournament</button>
+  <!-- ICONE MAISON EN HAUT À GAUCHE -->
+  <div class="home-btn" onclick="goHome()">🏠</div>
+
+  <!-- HERO SECTION (titre centré) -->
+  <section class="hero">                                                 
+    <h1 class="main-title">ESPORT MANAGER</h1>
+  </section>
+
+  <!-- TOURNAMENTS -->
+  <section class="tournaments">
+    <!-- Championnat -->
+    <div class="tournament">
+      <div class="tournament-info">
+        <h2>League / Championship 📅 </h2>
+        <p>Create a full league with standings,
+           promotions and relegations.</p>
+        <button class="start-btn" onclick="startLeagueTournament()">Start Tournament</button>
+      </div>
     </div>
+
+    <!-- Swiss Stage + Playoffs -->
+    <div class="tournament">
+      <div class="tournament-info">
+        <h2>Swiss Stage + Playoffs 🏆</h2>
+        <p>Teams compete in Swiss groups.
+           The best teams qualify for the playoffs with Upper and Lower brackets.</p>
+        <button class="start-btn">Start Tournament</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOUTON + TEAM -->
+  <button class="add-team-btn" onclick="toggleCreateTeam()">+ Team</button>
+
+  <!-- INTERFACE CREATION D'EQUIPE -->
+  <div class="create-team" id="createTeamPanel" style="display:none;">
+    <div class="close-btn" onclick="closeCreateTeam()">⛔</div>
+    <h2>Create a Team</h2>
+
+    <input id="teamName" placeholder="Team name">
+    <input id="teamTag" placeholder="Team tag (ex: ABC)">
+    
+    <!-- Choix du jeu -->
+    <select id="teamGame">
+      <option value="Valorant">Valorant</option>
+      <option value="RocketLeague">Rocket League</option>
+    </select>
+
+    <!-- Choix du lieu -->
+    <div class="team-location">
+      <span>📍</span>
+      <select id="teamLocation">
+        <option value="Europe">Europe</option>
+        <option value="America">America</option>
+        <option value="Asia">Asia</option>
+        <option value="MENA">MENA</option>
+        <option value="Pacific">Pacific</option>
+      </select>
+    </div>
+
+    <!-- Logo -->
+    <input type="file" id="teamLogo" accept="image/png">
+
+    <!-- Joueurs -->
+    <div id="playersList">
+      <h3>Players (max 5):</h3>
+      <ul id="playersUl"></ul>
+    </div>
+    <input id="playerName" placeholder="Player name">
+    <button type="button" id="addPlayerBtn">Add Player</button>
+
+    <button onclick="createTeam()">Create Team</button>
   </div>
 
-  <!-- Swiss Stage + Playoffs -->
-  <div class="tournament">
-    <div class="tournament-info">
-      <h2>Swiss Stage + Playoffs 🏆</h2>
-      <p>Teams compete in Swiss groups.
-        The best teams qualify for the playoffs with Upper and Lower brackets.</p>
-      <button class="start-btn">Start Tournament</button>
-    </div>
-  </div>
-</section>
+  <!-- LISTE DES EQUIPES -->
+  <div id="teamsList"></div>
 
-  <script src="script.js"></script>
+  <!-- SECTION TOURNOI (classement + matchs) -->
+  <div id="leagueTournament" style="display:none;">
+    <div class="close-btn" onclick="closeTournament()">⛔</div>
+    <h2 id="leagueTitle">League / Championship</h2>
+
+    <!-- Formulaire paramètre tournoi -->
+    <div class="tournament-setup">
+      <input type="text" id="tournamentName" placeholder="Nom du tournoi">
+      <input type="text" id="tournamentGame" placeholder="Game (Valorant / Rocket League)">
+      <input type="number" id="numTeams" placeholder="Nombre d'équipes" min="5" max="24">
+      <input type="number" id="promotedSpots" placeholder="Places promouvoir" min="0">
+      <input type="number" id="relegatedSpots" placeholder="Places rétrograde" min="0">
+      <button onclick="generateLeague()">Generate League</button>
+    </div>
+
+    <!-- Classement -->
+    <div id="leagueStandings"></div>
+
+    <!-- Calendrier matchs -->
+    <div id="matchCalendar"></div>
+  </div>
+
+<script src="script.js"></script>
 </body>
 </html>
-
-<button class="add-team-btn">+ Team</button>
-<div id="teamsList">TEAM</div>
-
-</body>

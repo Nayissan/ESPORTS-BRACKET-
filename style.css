@@ -1,175 +1,136 @@
-/* --------------------------- */
-/* BOUTON MAISON EN HAUT À GAUCHE */
-/* --------------------------- */
-.home-btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-size: 28px;
-  cursor: pointer;
-  z-index: 1000;
+/* POLICES */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap');
+
+/* BODY */
+body{
+  margin:0;
+  padding:0;
+  background:#071124; /* fond noir */
+  font-family:'Inter', sans-serif;
+  color:white;
 }
 
-/* --------------------------- */
-/* PANEL CREATION D'EQUIPE */
-/* --------------------------- */
-.create-team {
-  position: fixed;
-  top: 80px;
-  right: 50%;
-  transform: translateX(50%);
-  width: 400px;
-  background-color: #0b1220;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.7);
-  z-index: 1000;
-  font-family: 'Oswald', sans-serif;
+/* TITRE PRINCIPAL */
+.main-title{
+  font-family:'Orbitron', sans-serif;
+  font-size:60px;
+  text-align:center;
+  margin-top:60px;
+  margin-bottom:50px; /* 50px entre titre et texte */
+  letter-spacing:3px;
 }
 
-.create-team input, .create-team select {
-  width: 100%;
-  margin: 8px 0;
-  padding: 10px;
-  background: #071124;
-  border: 1px solid #2a3f66;
-  color: white;
-  border-radius: 6px;
+/* CONTENEUR PRINCIPAL */
+.container{
+  width:900px;
+  margin:auto;
 }
 
-.create-team button {
-  margin-top: 10px;
-  width: 100%;
-  background: linear-gradient(135deg, #4a5ffd, #9b6fff);
-  border: none;
-  padding: 10px;
-  border-radius: 8px;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
+/* BLOCS TOURNOIS */
+.tournament{
+  background:rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:12px;
+  margin-bottom:60px; /* 60px entre les tournois */
+  box-shadow:0 6px 20px rgba(0,0,0,0.5);
+  backdrop-filter:blur(6px);
 }
 
-.create-team button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+/* TITRES TOURNOIS */
+.tournament h2{
+  color:#4a8cff;
+  margin-bottom:10px;
+  font-family:'Orbitron', sans-serif;
 }
 
-/* Bouton fermer ⛔ */
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  cursor: pointer;
-  font-size: 20px;
-  color: white;
+/* TEXTE TOURNOIS */
+.tournament p{
+  line-height:1.6;
+  margin-bottom:0;
 }
 
-/* --------------------------- */
-/* LISTE DES EQUIPES */
-/* --------------------------- */
-.team-card {
-  display: flex;
-  align-items: flex-start;
-  background: #071124; /* bleu marine foncé */
-  border-radius: 12px;
-  padding: 12px;
-  margin-bottom: 15px;
+/* BOUTONS */
+button{
+  margin-top:20px; /* 20px entre texte et bouton */
+  background:linear-gradient(135deg,#4a5ffd,#9b6fff);
+  color:white;
+  padding:12px 24px;
+  border-radius:10px;
+  font-size:16px;
+  font-weight:600;
+  border:none;
+  cursor:pointer;
+  transition:0.2s;
 }
 
-.team-logo {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
+button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.5);
 }
 
-.team-info h3 {
-  margin: 0 0 5px 0;
-  font-family: 'Oswald', sans-serif;
-  color: white;
+/* BOUTON + TEAM */
+.add-team-btn{
+  display:block;
+  margin:90px auto 0 auto; /* 90px sous le texte */
+  font-size:18px;
+  padding:14px 26px;
+  background:linear-gradient(135deg,#4a5ffd,#9b6fff);
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.2s;
 }
 
-.team-info p {
-  margin: 0;
-  opacity: 0.8;
-  font-size: 14px;
+.add-team-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 15px rgba(0,0,0,0.4);
 }
 
-.team-info ul li {
-  margin: 3px 0;
-  padding: 4px;
-  background: black;
-  color: white;
-  list-style: none;
-  font-family: 'Oswald', sans-serif;
+/* CARTE EQUIPE */
+.team-card{
+  display:flex;
+  align-items:center;
+  background:rgba(255,255,255,0.06); /* fond bleu marine */
+  padding:12px;
+  border-radius:10px;
+  margin-top:10px;
+  flex-direction:column; /* haut -> bas : logo, nom, lieu, jeu */
 }
 
-/* --------------------------- */
-/* TOURNOI LIGUE / CHAMPIONSHIP */
-/* --------------------------- */
-#leagueTournament {
-  width: 1000px;
-  margin: 30px auto;
-  background: #071124;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+/* LOGO EQUIPE */
+.team-logo{
+  width:60px;
+  height:60px;
+  margin-bottom:10px;
+  border-radius:10px;
 }
 
-/* Formulaire paramètres tournoi */
-.tournament-setup input {
-  margin: 10px 10px 10px 0;
-  padding: 10px;
-  width: 180px;
-  border-radius: 6px;
-  border: 1px solid #2a3f66;
-  background: #0b1220;
-  color: white;
+/* INFOS EQUIPE */
+.team-info{
+  text-align:center;
 }
 
-/* Classement */
-#leagueStandings table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+.team-info h3{
+  margin:0;
+  font-family:'Oswald', sans-serif; /* police classe */
 }
 
-#leagueStandings th, #leagueStandings td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+.team-info p{
+  margin:5px 0 0 0;
+  opacity:0.7;
 }
 
-#leagueStandings th {
-  background: #2a3f66;
-  color: white;
-}
-
-#leagueStandings img {
-  vertical-align: middle;
-  border-radius: 5px;
-}
-
-/* Calendrier des matchs */
-#matchCalendar .match {
-  background: #121a2b;
-  color: white;
-  border-radius: 10px;
-  padding: 12px;
-  margin-bottom: 15px;
-}
-
-#matchCalendar .match div {
-  font-family: 'Oswald', sans-serif;
-}
-
-/* Bouton 🎲 pour match aléatoire */
-#matchCalendar span {
-  cursor: pointer;
-  font-size: 20px;
-}
-
-/* Espacement général */
-section, .tournaments, #teamsList, #leagueTournament {
-  margin-bottom: 30px;
+/* LISTE JOUEURS */
+#playersList li{
+  color:white;
+  background:black;
+  font-family:'Oswald', sans-serif;
+  padding:5px;
+  margin-bottom:5px;
+  list-style:none;
+  border-radius:5px;
+  width:fit-content;
+  margin-left:auto;
+  margin-right:auto;
 }

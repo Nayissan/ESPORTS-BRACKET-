@@ -43,7 +43,7 @@ function closeCreateTeam() {
 }
 
 // Ajouter un joueur
-addPlayerBtn.onclick = () => {
+addPlayerBtn.onclick = () {
   const playerNameInput = document.getElementById("playerName");
   const playerName = playerNameInput.value.trim();
   if (!playerName) return;

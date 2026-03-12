@@ -9,14 +9,14 @@ function openMenu() {
     menu.style.right = "0px"; // montre le menu
 
   }  
-    function startLeagueTournament() {
-  // Affiche la section du tournoi
-  const leagueTournament = document.getElementById("leagueTournament");
-  leagueTournament.style.display = "block";
+ document.getElementById("startLeagueBtn").addEventListener("click", function() {
+    // Masquer la page d'accueil
+    document.querySelector(".hero").style.display = "none";
+    document.querySelector(".tournaments").style.display = "none";
 
-  // Optionnel : tu peux cacher la liste des équipes ou la page d'accueil
-  // document.querySelector(".tournaments").style.display = "none";
-  // document.querySelector(".hero").style.display = "none";
+    // Afficher la page du tournoi Ligue/Championnat
+    document.getElementById("leaguePage").style.display = "block";
+});
 }
 }
 

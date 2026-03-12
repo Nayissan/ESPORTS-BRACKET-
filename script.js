@@ -8,16 +8,7 @@ function openMenu() {
   } else {
     menu.style.right = "0px"; // montre le menu
 
-  }  
- document.getElementById("startLeagueBtn").addEventListener("click", function() {
-    // Masquer la page d'accueil
-    document.querySelector(".hero").style.display = "none";
-    document.querySelector(".tournaments").style.display = "none";
 
-    // Afficher la page du tournoi Ligue/Championnat
-    document.getElementById("leaguePage").style.display = "block";
-});
-}
 }
 
 // ---------------------------

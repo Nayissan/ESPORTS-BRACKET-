@@ -1,130 +1,104 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #0b1220; /* bleu marine foncé */
-  font-family: Arial, sans-serif;
-  color: white;
-}
-
-/* HERO SECTION */
-.hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50vh; /* moitié de la page */
-}
-
-.main-title {
-  font-size: 60px;
-  letter-spacing: 3px;
-  text-align: center;
-}
-
-/* TOURNAMENTS */
-.tournaments {
-  width: 900px;
-  margin: 0 auto;
-  padding: 40px 0;
-}
-
-.tournament {
-  display: flex;
-  background: #121a2b;
-  padding: 30px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-  align-items: center;
-}
-
-.tournament-image {
-  font-size: 70px;
-  margin-right: 30px;
-}
-
-.tournament-info h2 {
-  margin: 0 0 10px 0;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 24px;
-
-}
-
-.tournament-info p {
-  opacity: 0.7;
-  margin-bottom: 15px;
-   font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-}
-
-.start-btn {
-  background: #4da3ff;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* MENU HAMBURGER */
-.menu-btn {
-  position: fixed;
-  top: 30px;
-  right: 40px;
-  font-size: 35px;
-  cursor: pointer;
-  z-index: 10;
-}
-
-/* SIDE MENU */
-#sideMenu {
-  position: corner left;
-  top: 0;
-  right: -250px;
-  width: 250px;
-  height: 150%;
-  background: black;
-  padding-top: 120px;
-  transition: 0.3s;
-  z-index: 9;
-}
-
-.menu-item {
-  padding: 25px;
-  font-size: 50px;
-  cursor: pointer;
-}
+// ---------------------------
+// Gestion du menu latéral
+// ---------------------------
 function openMenu() {
   let menu = document.getElementById("sideMenu");
-  if(menu.style.right === "0px"){
+  if (menu.style.right === "0px") {
     menu.style.right = "-250px"; // cache le menu
   } else {
-    menu.style.right = "0px";    // montre le menu
+    menu.style.right = "0px"; // montre le menu
   }
-  document.querySelector(".add-team-btn").onclick = function(){
+}
 
-  let name = prompt("Team name");
-  if(!name) return;
+// ---------------------------
+// Gestion de la création d'équipe
+// ---------------------------
+const teamsList = document.getElementById("teamsList");
+const createTeamPanel = document.getElementById("createTeamPanel");
+const addPlayerBtn = document.getElementById("addPlayerBtn");
+const playersUl = document.getElementById("playersUl");
 
-  let tag = prompt("Team tag (ex: ABC)");
-  if(!tag) return;
+let currentPlayers = [];
 
-  let game = prompt("Game (Valorant or RocketLeague)");
-  if(!game) return;
+// Ouvrir / fermer le panel de création d'équipe
+function toggleCreateTeam() {
+  createTeamPanel.style.display = createTeamPanel.style.display === "none" ? "block" : "none";
+}
 
-  let players = game === "Valorant" ? 5 : 3;
+function closeCreateTeam() {
+  createTeamPanel.style.display = "none";
+  currentPlayers = [];
+  playersUl.innerHTML = "";
+}
 
-  let teamHTML = `
-  <div class="team-card">
-    <img src="defaultlogo.png" class="team-logo">
+// Ajouter un joueur
+addPlayerBtn.onclick = () => {
+  const playerNameInput = document.getElementById("playerName");
+  const playerName = playerNameInput.value.trim();
+  if (!playerName) return;
+  if (currentPlayers.length >= 5) return alert("Max 5 players per team");
+  currentPlayers.push(playerName);
 
-    <div class="team-info">
-      <h3>${name}</h3>
-      <p>${tag} • ${players} players</p>
+  const li = document.createElement("li");
+  li.textContent = playerName;
+  li.style.color = "white";
+  li.style.background = "black";
+  li.style.padding = "5px";
+  li.style.marginBottom = "5px";
+  li.style.listStyle = "none";
+  li.style.fontFamily = "'Oswald', sans-serif";
+  playersUl.appendChild(li);
+
+  playerNameInput.value = "";
+};
+
+// Créer l'équipe
+function createTeam() {
+  const teamName = document.getElementById("teamName").value.trim();
+  const teamTag = document.getElementById("teamTag").value.trim();
+  const teamGame = document.getElementById("teamGame").value;
+  const teamLocation = document.getElementById("teamLocation").value;
+  const teamLogoInput = document.getElementById("teamLogo");
+
+  if (!teamName || !teamTag) return alert("Veuillez remplir le nom et le tag de l'équipe");
+
+  let logoSrc = "defaultlogo.png";
+  if (teamLogoInput.files.length > 0) {
+    logoSrc = URL.createObjectURL(teamLogoInput.files[0]);
+  }
+
+  const teamHTML = `
+    <div class="team-card" style="background:#071124; border-radius:12px; padding:15px; margin-bottom:15px;">
+      <img src="${logoSrc}" class="team-logo" style="width:60px; height:60px; border-radius:10px;">
+      <div class="team-info" style="display:inline-block; vertical-align:top; margin-left:15px;">
+        <h3 style="margin:0; font-family:'Oswald', sans-serif;">${teamName}</h3>
+        <p style="margin:3px 0;">${teamTag} • ${teamGame} • 📍${teamLocation}</p>
+        <ul id="teamPlayersList" style="padding-left:0; margin:0;"></ul>
+      </div>
     </div>
-  </div>
   `;
 
-  document.getElementById("teamsList").innerHTML += teamHTML;
-    
+  teamsList.innerHTML += teamHTML;
 
+  // Ajouter les joueurs
+  const teamPlayersUl = teamsList.querySelectorAll("#teamPlayersList");
+  const lastUl = teamPlayersUl[teamPlayersUl.length - 1];
+  currentPlayers.forEach(p => {
+    const li = document.createElement("li");
+    li.textContent = p;
+    li.style.color = "white";
+    li.style.background = "black";
+    li.style.padding = "3px";
+    li.style.marginBottom = "3px";
+    li.style.listStyle = "none";
+    li.style.fontFamily = "'Oswald', sans-serif";
+    lastUl.appendChild(li);
+  });
+
+  // Reset
+  currentPlayers = [];
+  playersUl.innerHTML = "";
+  document.getElementById("teamName").value = "";
+  document.getElementById("teamTag").value = "";
+  createTeamPanel.style.display = "none";
 }
-  </body>.

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Esport Manager</title>
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -85,7 +85,7 @@
   <!-- LISTE DES EQUIPES -->
   <div id="teamsList"></div>
 
-  <!-- SECTION TOURNOI LIGUE/CHAMPIONNAT -->
+  <!-- SECTION TOURNOI (classement + matchs) -->
   <div id="leagueTournament" style="display:none;">
     <div class="close-btn" onclick="closeTournament()">⛔</div>
     <h2 id="leagueTitle">League / Championship</h2>
@@ -93,10 +93,7 @@
     <!-- Formulaire paramètre tournoi -->
     <div class="tournament-setup">
       <input type="text" id="tournamentName" placeholder="Nom du tournoi">
-      <select id="tournamentGame">
-        <option value="Valorant">Valorant</option>
-        <option value="RocketLeague">Rocket League</option>
-      </select>
+      <input type="text" id="tournamentGame" placeholder="Game (Valorant / Rocket League)">
       <input type="number" id="numTeams" placeholder="Nombre d'équipes" min="5" max="24">
       <input type="number" id="promotedSpots" placeholder="Places promouvoir" min="0">
       <input type="number" id="relegatedSpots" placeholder="Places rétrograde" min="0">

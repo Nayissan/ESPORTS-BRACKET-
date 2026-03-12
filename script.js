@@ -1,104 +1,160 @@
 // ---------------------------
-// Gestion du menu latéral
+// Gestion du tournoi Ligue/Championnat
 // ---------------------------
-function openMenu() {
-  let menu = document.getElementById("sideMenu");
-  if (menu.style.right === "0px") {
-    menu.style.right = "-250px"; // cache le menu
-  } else {
-    menu.style.right = "0px"; // montre le menu
-  }
-}
+const leagueTournament = document.getElementById("leagueTournament");
+const leagueStandings = document.getElementById("leagueStandings");
+const matchCalendar = document.getElementById("matchCalendar");
 
-// ---------------------------
-// Gestion de la création d'équipe
-// ---------------------------
-const teamsList = document.getElementById("teamsList");
-const createTeamPanel = document.getElementById("createTeamPanel");
-const addPlayerBtn = document.getElementById("addPlayerBtn");
-const playersUl = document.getElementById("playersUl");
+// Récupération des équipes créées
+let leagueTeams = [];
 
-let currentPlayers = [];
-
-// Ouvrir / fermer le panel de création d'équipe
-function toggleCreateTeam() {
-  createTeamPanel.style.display = createTeamPanel.style.display === "none" ? "block" : "none";
-}
-
-function closeCreateTeam() {
-  createTeamPanel.style.display = "none";
-  currentPlayers = [];
-  playersUl.innerHTML = "";
-}
-
-// Ajouter un joueur
-addPlayerBtn.onclick = () => {
-  const playerNameInput = document.getElementById("playerName");
-  const playerName = playerNameInput.value.trim();
-  if (!playerName) return;
-  if (currentPlayers.length >= 5) return alert("Max 5 players per team");
-  currentPlayers.push(playerName);
-
-  const li = document.createElement("li");
-  li.textContent = playerName;
-  li.style.color = "white";
-  li.style.background = "black";
-  li.style.padding = "5px";
-  li.style.marginBottom = "5px";
-  li.style.listStyle = "none";
-  li.style.fontFamily = "'Oswald', sans-serif";
-  playersUl.appendChild(li);
-
-  playerNameInput.value = "";
-};
-
-// Créer l'équipe
-function createTeam() {
-  const teamName = document.getElementById("teamName").value.trim();
-  const teamTag = document.getElementById("teamTag").value.trim();
-  const teamGame = document.getElementById("teamGame").value;
-  const teamLocation = document.getElementById("teamLocation").value;
-  const teamLogoInput = document.getElementById("teamLogo");
-
-  if (!teamName || !teamTag) return alert("Veuillez remplir le nom et le tag de l'équipe");
-
-  let logoSrc = "defaultlogo.png";
-  if (teamLogoInput.files.length > 0) {
-    logoSrc = URL.createObjectURL(teamLogoInput.files[0]);
+// Fonction pour démarrer le tournoi Ligue
+function startLeagueTournament() {
+  if (teamsList.children.length === 0) {
+    return alert("Créez d'abord des équipes !");
   }
 
-  const teamHTML = `
-    <div class="team-card" style="background:#071124; border-radius:12px; padding:15px; margin-bottom:15px;">
-      <img src="${logoSrc}" class="team-logo" style="width:60px; height:60px; border-radius:10px;">
-      <div class="team-info" style="display:inline-block; vertical-align:top; margin-left:15px;">
-        <h3 style="margin:0; font-family:'Oswald', sans-serif;">${teamName}</h3>
-        <p style="margin:3px 0;">${teamTag} • ${teamGame} • 📍${teamLocation}</p>
-        <ul id="teamPlayersList" style="padding-left:0; margin:0;"></ul>
-      </div>
-    </div>
-  `;
+  // Récupérer les équipes
+  leagueTeams = [];
+  const teamCards = document.querySelectorAll(".team-card");
+  teamCards.forEach(card => {
+    const name = card.querySelector("h3").textContent;
+    const infoText = card.querySelector("p").textContent.split(" • ");
+    const tag = infoText[0];
+    const game = infoText[1];
+    const location = infoText[2];
+    const logo = card.querySelector("img").src;
 
-  teamsList.innerHTML += teamHTML;
-
-  // Ajouter les joueurs
-  const teamPlayersUl = teamsList.querySelectorAll("#teamPlayersList");
-  const lastUl = teamPlayersUl[teamPlayersUl.length - 1];
-  currentPlayers.forEach(p => {
-    const li = document.createElement("li");
-    li.textContent = p;
-    li.style.color = "white";
-    li.style.background = "black";
-    li.style.padding = "3px";
-    li.style.marginBottom = "3px";
-    li.style.listStyle = "none";
-    li.style.fontFamily = "'Oswald', sans-serif";
-    lastUl.appendChild(li);
+    leagueTeams.push({
+      name,
+      tag,
+      game,
+      location,
+      logo,
+      players: Array.from(card.querySelectorAll("ul li")).map(li => li.textContent),
+      points: 0,
+      J: 0,
+      K: 0,
+      D: 0,
+      Diff: 0
+    });
   });
 
-  // Reset
-  currentPlayers = [];
-  playersUl.innerHTML = "";
-  document.getElementById("teamName").value = "";
-  document.getElementById("teamTag").value = "";
-  createTeamPanel.style.display = "none";
+  // Afficher le tournoi
+  leagueTournament.style.display = "block";
+  document.getElementById("leagueTitle").textContent = "League / Championship";
+  renderStandings();
+  renderMatchCalendar();
+}
+
+// ---------------------------
+// Génération automatique du classement et calendrier
+// ---------------------------
+function generateLeague() {
+  const numTeams = parseInt(document.getElementById("numTeams").value);
+  const promoted = parseInt(document.getElementById("promotedSpots").value);
+  const relegated = parseInt(document.getElementById("relegatedSpots").value);
+  const game = document.getElementById("tournamentGame").value;
+
+  if (numTeams < 5 || numTeams > leagueTeams.length) {
+    return alert("Nombre d'équipes invalide !");
+  }
+
+  // Limiter le nombre d'équipes sélectionnées
+  leagueTeams = leagueTeams.slice(0, numTeams);
+
+  // Réinitialiser les stats
+  leagueTeams.forEach(t => {
+    t.points = 0;
+    t.J = 0;
+    t.K = 0;
+    t.D = 0;
+    t.Diff = 0;
+  });
+
+  renderStandings(game);
+  renderMatchCalendar(game);
+}
+
+// ---------------------------
+// Affichage du classement
+// ---------------------------
+function renderStandings(game) {
+  leagueStandings.innerHTML = "";
+
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const trHead = document.createElement("tr");
+
+  trHead.innerHTML = game === "Valorant" 
+    ? "<th>#</th><th>Logo</th><th>Équipe</th><th>J</th><th>K/D</th><th>Pts</th>"
+    : "<th>#</th><th>Logo</th><th>Équipe</th><th>J</th><th>Diff</th><th>Pts</th>";
+  thead.appendChild(trHead);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+  leagueTeams.forEach((team, i) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = game === "Valorant"
+      ? `<td>${i+1}</td><td><img src="${team.logo}" width="30"></td><td>${team.name}</td><td>${team.J}</td><td>${team.K}/${team.D}</td><td>${team.points}</td>`
+      : `<td>${i+1}</td><td><img src="${team.logo}" width="30"></td><td>${team.name}</td><td>${team.J}</td><td>${team.Diff}</td><td>${team.points}</td>`;
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  leagueStandings.appendChild(table);
+}
+
+// ---------------------------
+// Génération calendrier match BO3
+// ---------------------------
+function renderMatchCalendar(game) {
+  matchCalendar.innerHTML = "";
+
+  const rounds = leagueTeams.length * 2 - 2; // simplifié pour calendrier
+  let journee = 1;
+
+  for (let i = 0; i < rounds; i++) {
+    for (let j = 0; j < leagueTeams.length; j+=2) {
+      if (j+1 >= leagueTeams.length) continue;
+
+      const teamA = leagueTeams[j];
+      const teamB = leagueTeams[j+1];
+
+      const matchDiv = document.createElement("div");
+      matchDiv.className = "match";
+      matchDiv.style.border = "1px solid white";
+      matchDiv.style.padding = "10px";
+      matchDiv.style.margin = "10px 0";
+      matchDiv.innerHTML = `
+        <div style="text-align:center; font-weight:bold;">Journée ${journee}</div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+          <img src="${teamA.logo}" width="50" style="border-radius:8px;">
+          <span>🎲</span>
+          <img src="${teamB.logo}" width="50" style="border-radius:8px;">
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-top:5px;">
+          <span>${teamA.name}</span>
+          <span>#${j+1}</span>
+          <span>#${j+2}</span>
+          <span>${teamB.name}</span>
+        </div>
+      `;
+      matchCalendar.appendChild(matchDiv);
+    }
+    journee++;
+  }
+}
+
+// ---------------------------
+// Retour accueil
+// ---------------------------
+function goHome() {
+  leagueTournament.style.display = "none";
+}
+
+// ---------------------------
+// Fermer tournoi
+// ---------------------------
+function closeTournament() {
+  leagueTournament.style.display = "none";
 }

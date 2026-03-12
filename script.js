@@ -7,7 +7,17 @@ function openMenu() {
     menu.style.right = "-250px"; // cache le menu
   } else {
     menu.style.right = "0px"; // montre le menu
-  }
+
+  }  
+    function startLeagueTournament() {
+  // Affiche la section du tournoi
+  const leagueTournament = document.getElementById("leagueTournament");
+  leagueTournament.style.display = "block";
+
+  // Optionnel : tu peux cacher la liste des équipes ou la page d'accueil
+  // document.querySelector(".tournaments").style.display = "none";
+  // document.querySelector(".hero").style.display = "none";
+}
 }
 
 // ---------------------------

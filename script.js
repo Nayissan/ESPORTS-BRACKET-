@@ -1,3 +1,13 @@
+// Fonction pour afficher le tournoi Ligue / Championship
+function startLeagueTournament() {
+  const leagueTournament = document.getElementById("leagueTournament");
+  leagueTournament.style.display = "block";
+
+  // Optionnel : cacher les autres sections
+  document.querySelector(".hero").style.display = "none";
+  document.querySelector(".tournaments").style.display = "none";
+  document.querySelector(".add-team-btn").style.display = "none";
+}
 // ---------------------------
 // Gestion du menu latéral
 // ---------------------------

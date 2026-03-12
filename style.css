@@ -1,11 +1,11 @@
-/* POLICE */
+/* POLICES */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap');
 
 /* BODY */
 body{
   margin:0;
   padding:0;
-  background:#071124;
+  background:#071124; /* fond noir */
   font-family:'Inter', sans-serif;
   color:white;
 }
@@ -20,7 +20,7 @@ body{
   letter-spacing:3px;
 }
 
-/* CONTENU */
+/* CONTENEUR PRINCIPAL */
 .container{
   width:900px;
   margin:auto;
@@ -31,7 +31,7 @@ body{
   background:rgba(255,255,255,0.05);
   padding:25px;
   border-radius:12px;
-  margin-bottom:60px; /* 60px entre les 2 tournois */
+  margin-bottom:60px; /* 60px entre les tournois */
   box-shadow:0 6px 20px rgba(0,0,0,0.5);
   backdrop-filter:blur(6px);
 }
@@ -40,11 +40,13 @@ body{
 .tournament h2{
   color:#4a8cff;
   margin-bottom:10px;
+  font-family:'Orbitron', sans-serif;
 }
 
-/* TEXTE */
+/* TEXTE TOURNOIS */
 .tournament p{
   line-height:1.6;
+  margin-bottom:0;
 }
 
 /* BOUTONS */
@@ -72,32 +74,63 @@ button:hover{
   margin:90px auto 0 auto; /* 90px sous le texte */
   font-size:18px;
   padding:14px 26px;
+  background:linear-gradient(135deg,#4a5ffd,#9b6fff);
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.2s;
+}
+
+.add-team-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 15px rgba(0,0,0,0.4);
 }
 
 /* CARTE EQUIPE */
 .team-card{
   display:flex;
   align-items:center;
-  background:rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.06); /* fond bleu marine */
   padding:12px;
   border-radius:10px;
   margin-top:10px;
+  flex-direction:column; /* haut -> bas : logo, nom, lieu, jeu */
 }
 
 /* LOGO EQUIPE */
 .team-logo{
-  width:50px;
-  height:50px;
-  margin-right:12px;
-  border-radius:8px;
+  width:60px;
+  height:60px;
+  margin-bottom:10px;
+  border-radius:10px;
 }
 
 /* INFOS EQUIPE */
+.team-info{
+  text-align:center;
+}
+
 .team-info h3{
   margin:0;
+  font-family:'Oswald', sans-serif; /* police classe */
 }
 
 .team-info p{
-  margin:0;
+  margin:5px 0 0 0;
   opacity:0.7;
+}
+
+/* LISTE JOUEURS */
+#playersList li{
+  color:white;
+  background:black;
+  font-family:'Oswald', sans-serif;
+  padding:5px;
+  margin-bottom:5px;
+  list-style:none;
+  border-radius:5px;
+  width:fit-content;
+  margin-left:auto;
+  margin-right:auto;
 }

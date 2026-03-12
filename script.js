@@ -1,24 +1,26 @@
-// Fonction pour afficher le tournoi Ligue / Championship
-function startLeagueTournament() {
-  const leagueTournament = document.getElementById("leagueTournament");
-  leagueTournament.style.display = "block";
-
-  // Optionnel : cacher les autres sections
-  document.querySelector(".hero").style.display = "none";
-  document.querySelector(".tournaments").style.display = "none";
-  document.querySelector(".add-team-btn").style.display = "none";
-}
 // ---------------------------
 // Gestion du menu latéral
 // ---------------------------
 function openMenu() {
-  let menu = document.getElementById("sideMenu");
+  const menu = document.getElementById("sideMenu");
   if (menu.style.right === "0px") {
     menu.style.right = "-250px"; // cache le menu
   } else {
     menu.style.right = "0px"; // montre le menu
+  }
+}
 
+// ---------------------------
+// Gestion du tournoi Ligue / Championship
+// ---------------------------
+function startLeagueTournament() {
+  const leagueTournament = document.getElementById("leagueTournament");
+  leagueTournament.style.display = "block";
 
+  // Cacher les autres sections
+  document.querySelector(".hero").style.display = "none";
+  document.querySelector(".tournaments").style.display = "none";
+  document.querySelector(".add-team-btn").style.display = "none";
 }
 
 // ---------------------------
@@ -33,7 +35,8 @@ let currentPlayers = [];
 
 // Ouvrir / fermer le panel de création d'équipe
 function toggleCreateTeam() {
-  createTeamPanel.style.display = createTeamPanel.style.display === "none" ? "block" : "none";
+  createTeamPanel.style.display =
+    createTeamPanel.style.display === "none" ? "block" : "none";
 }
 
 function closeCreateTeam() {
@@ -43,11 +46,13 @@ function closeCreateTeam() {
 }
 
 // Ajouter un joueur
-addPlayerBtn.onclick = () {
+addPlayerBtn.onclick = function () {
   const playerNameInput = document.getElementById("playerName");
   const playerName = playerNameInput.value.trim();
   if (!playerName) return;
-  if (currentPlayers.length >= 5) return alert("Max 5 players per team");
+  if (currentPlayers.length >= 5)
+    return alert("Max 5 players per team");
+
   currentPlayers.push(playerName);
 
   const li = document.createElement("li");
@@ -71,7 +76,8 @@ function createTeam() {
   const teamLocation = document.getElementById("teamLocation").value;
   const teamLogoInput = document.getElementById("teamLogo");
 
-  if (!teamName || !teamTag) return alert("Veuillez remplir le nom et le tag de l'équipe");
+  if (!teamName || !teamTag)
+    return alert("Veuillez remplir le nom et le tag de l'équipe");
 
   let logoSrc = "defaultlogo.png";
   if (teamLogoInput.files.length > 0) {
@@ -84,7 +90,7 @@ function createTeam() {
       <div class="team-info" style="display:inline-block; vertical-align:top; margin-left:15px;">
         <h3 style="margin:0; font-family:'Oswald', sans-serif;">${teamName}</h3>
         <p style="margin:3px 0;">${teamTag} • ${teamGame} • 📍${teamLocation}</p>
-        <ul id="teamPlayersList" style="padding-left:0; margin:0;"></ul>
+        <ul class="teamPlayersList" style="padding-left:0; margin:0;"></ul>
       </div>
     </div>
   `;
@@ -92,9 +98,9 @@ function createTeam() {
   teamsList.innerHTML += teamHTML;
 
   // Ajouter les joueurs
-  const teamPlayersUl = teamsList.querySelectorAll("#teamPlayersList");
+  const teamPlayersUl = teamsList.querySelectorAll(".teamPlayersList");
   const lastUl = teamPlayersUl[teamPlayersUl.length - 1];
-  currentPlayers.forEach(p => {
+  currentPlayers.forEach((p) => {
     const li = document.createElement("li");
     li.textContent = p;
     li.style.color = "white";
